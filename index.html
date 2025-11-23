@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Prokits Network</title>
-    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css"/>
+    <title>Prokits Network - Minecraft Server Development</title>
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.5/dist/terminal.min.css"/>
     <style>
         :root {
             --global-font-size: 15px;
@@ -31,66 +31,339 @@
             --input-style: solid;
             --display-h1-decoration: none;
         }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a1f 0%, #2a2a35 100%);
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        .hero-content {
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .server-status {
+            background-color: var(--code-bg-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        
+        .status-online {
+            color: #4CAF50;
+        }
+        
+        .status-offline {
+            color: #F44336;
+        }
+        
+        .open-source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background-color: var(--code-bg-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .feature-grid, .open-source-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body class="terminal">
-<div class="container">
-    <div class="terminal-nav">
-        <header>
-            <div class="logo terminal-prompt">
-                <b>Prokits Network</b>
-            </div>
-        </header>
-        <nav class="terminal-menu">
-            <ul vocab="https://schema.org" typeof="BreadcrumbList">
-                <li property="itemListElement" typeof="ListItem">
-                    <a property="item" typeof="WebPage" class="active menu-item"><span property="name">TODO</span></a>
-                    <meta property="position" content="1">
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <div class="container default-font">
-        <p>We are a non-profit Minecraft Bedrock Edition server development team, established in 2019.</p>
-        <p>If you're interested, feel free to join us at play.prokits.space:19132.</p>
-        
-        <h2>Our Development Goals</h2>
-        <p>We are committed to creating an inclusive environment for Minecraft enthusiasts, driven by our love for the game.</p>
-        
-        <h2>Our Projects</h2>
-        <div class="terminal-timeline">
-            <div class="terminal-card">
-                <header>SOVPVP</header>
-                <div>Our first server, launched on Netease and Bedrock Edition during the 1.12 era. It has since been closed.</div>
-            </div>
-            <div class="terminal-card">
-                <header>Prokits</header>
-                <div>A brand new Bedrock Edition server introduced during the 1.14 era, featuring new features. This project has been closed.</div>
-            </div>
-            <div class="terminal-card">
-                <header>Prokits (a.k.a ProPixelGames)</header>
-                <div>Our most recent server, featuring mini-games and new experiences for players. It remains open, with no plans for closure at the moment.</div>
-            </div>
-            <div class="terminal-card">
-                <header>pvp_NG (internal development codename)</header>
-                <div>The next-generation server, currently in a very early development stage.</div>
-            </div>
-            <div class="terminal-card">
-                <header>prokits_NG (internal development codename)</header>
-                <div>Built on the foundations of pvp_NG, this server introduces new technologies. It's currently playable but shelved for internal reasons.</div>
-            </div>
-            <div class="terminal-card">
-                <header>gractice (internal development codename)</header>
-                <div>An experimental server that is currently unplayable.</div>
-            </div>
-            <div class="terminal-card">
-                <header>Project Misaki</header>
-                <div>After several improvements and the addition of new games, more features have been implemented. Currently open for prelimitary testing.
-                <br>play.misaki.host:25601</div>
-            </div>
+    <!-- 导航栏 -->
+    <div class="container">
+        <div class="terminal-nav">
+            <header>
+                <div class="logo terminal-prompt">
+                    <b>Prokits Network</b>
+                </div>
+            </header>
+            <nav class="terminal-menu">
+                <ul vocab="https://schema.org" typeof="BreadcrumbList">
+                    <li property="itemListElement" typeof="ListItem">
+                        <a href="#home" property="item" typeof="WebPage" class="menu-item"><span property="name">首页</span></a>
+                        <meta property="position" content="1">
+                    </li>
+                    <li property="itemListElement" typeof="ListItem">
+                        <a href="#projects" property="item" typeof="WebPage" class="menu-item"><span property="name">项目</span></a>
+                        <meta property="position" content="2">
+                    </li>
+                    <li property="itemListElement" typeof="ListItem">
+                        <a href="#opensource" property="item" typeof="WebPage" class="menu-item"><span property="name">开源组件</span></a>
+                        <meta property="position" content="3">
+                    </li>
+                    <li property="itemListElement" typeof="ListItem">
+                        <a href="#servers" property="item" typeof="WebPage" class="menu-item"><span property="name">服务器</span></a>
+                        <meta property="position" content="4">
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
-</div>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Prokits Network</h1>
+                <p class="hero-subtitle">自2019年成立的非营利性Minecraft基岩版服务器开发团队，专注于技术创新与开源贡献</p>
+                <div>
+                    <a href="#servers" class="btn btn-primary btn-large">立即加入服务器</a>
+                    <a href="#opensource" class="btn btn-ghost btn-large">查看开源项目</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 关于我们 -->
+        <section class="section">
+            <h2 class="section-title">关于我们</h2>
+            <p>我们是一支专注于Minecraft基岩版服务器开发的技术团队，成立于2019年。我们致力于通过技术创新提升游戏体验，同时积极回馈开源社区。</p>
+            
+            <div class="feature-grid">
+                <div class="terminal-card">
+                    <header>技术创新</header>
+                    <div>
+                        <p>我们不断探索Minecraft服务器技术的前沿，使用最新的开发工具和框架，包括Dragonfly和Ouranos多版本代理。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>开源精神</header>
+                    <div>
+                        <p>我们相信开源的力量，已经发布了多个核心组件，包括libasync、EconomyLib和libReplay，供社区使用和改进。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>社区驱动</header>
+                    <div>
+                        <p>我们的发展始终以社区需求为导向，积极听取玩家反馈，不断优化和扩展服务器功能。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 开源项目 -->
+        <section class="section" id="opensource">
+            <h2 class="section-title">开源项目</h2>
+            <p>我们致力于推动Minecraft服务器开发技术的进步，以下是我们开源的核心组件：</p>
+            
+            <div class="open-source-grid">
+                <div class="terminal-card">
+                    <header>libasync</header>
+                    <div>
+                        <p>高性能异步任务处理库，专为Minecraft服务器优化，提供高效的并发处理能力。</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">异步</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>EconomyLib</header>
+                    <div>
+                        <p>灵活的经济系统框架，支持多种货币类型和交易模式，易于集成到各类服务器中。</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">经济系统</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>libReplay</header>
+                    <div>
+                        <p>游戏回放系统核心库，支持记录和重放游戏过程，用于调试和分析玩家行为。</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">回放系统</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 1.5rem;">我们欢迎社区贡献代码和反馈，共同改进这些项目。</p>
+        </section>
+        
+        <!-- 服务器状态 -->
+        <section class="section" id="servers">
+            <h2 class="section-title">服务器状态</h2>
+            
+            <div class="server-status">
+                <h3>The Solaria</h3>
+                <p>基于Dragonfly重写的高性能Minecraft服务器</p>
+                <p><strong>地址:</strong> solaria.asia:25592</p>
+                <p><strong>状态:</strong> <span class="status-online">● 在线</span></p>
+                <p><strong>版本:</strong> 支持多版本（通过Ouranos代理）</p>
+                <p><strong>特色:</strong> 高性能架构、多版本支持、活跃社区</p>
+                <a href="sminecraft://?addExternalServer=Solaria|solaria.asia:25592" class="btn btn-primary" style="margin-top: 1rem;">立即加入</a>
+            </div>
+            
+            <div class="server-status">
+                <h3>Project Misaki</h3>
+                <p>经过多次改进的实验性服务器，新增多种游戏模式</p>
+                <p><strong>地址:</strong> play.misaki.host:25601</p>
+                <p><strong>状态:</strong> <span class="status-online">● 在线（测试阶段）</span></p>
+                <p><strong>版本:</strong> 基岩版</p>
+                <p><strong>特色:</strong> (旧)实验性功能、新游戏模式、技术预览</p>
+                <a href="minecraft://?addExternalServer=Misaki|play.misaki.host:25601" class="btn btn-primary" style="margin-top: 1rem;">加入测试</a>
+            </div>
+        </section>
+        
+        <!-- 项目历史 -->
+        <section class="section" id="projects">
+            <h2 class="section-title">项目历史</h2>
+            <p>自2019年成立以来，我们开发了多个Minecraft服务器项目，以下是我们的发展历程：</p>
+            
+            <div class="terminal-timeline">
+                <div class="terminal-card">
+                    <header>SOVPVP (2019)</header>
+                    <div>
+                        <p>我们的第一个服务器，在网易和基岩版1.12时代上线。现已关闭。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>Prokits (1.14时代)</header>
+                    <div>
+                        <p>在1.14时代推出的全新基岩版服务器，引入多项新功能。此项目已关闭。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>Prokits (a.k.a ProPixelGames)</header>
+                    <div>
+                        <p>历史的服务器，包含多种小游戏和新体验，已经关闭计划。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>pvp_NG (内部开发代号)</header>
+                    <div>
+                        <p>过时的"下一代"服务器，已开发完毕，弃用。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>prokits_NG (内部开发代号)</header>
+                    <div>
+                        <p>基于pvp_NG构建的服务器，引入新技术。目前可玩但因内部原因暂停开发。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>gractice (内部开发代号)</header>
+                    <div>
+                        <p>实验性服务器，不可游玩。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>Misaki</header>
+                    <div>
+                        <p>经过多次改进和新增游戏模式后，实现了更多功能。目前开放进行初步测试。</p>
+                    </div>
+                </div>
+                
+                <div class="terminal-card">
+                    <header>olaria</header>
+                    <div>
+                        <p>使用df-mc/dragonfly重写的全新高性能服务器，支持多版本代理。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 技术栈 -->
+        <section class="section">
+            <h2 class="section-title">技术栈</h2>
+            <p>我们使用现代化的技术栈来构建高性能的Minecraft服务器：</p>
+            
+            <div class="tech-stack" style="margin-top: 1.5rem;">
+                <span class="tech-tag">Dragonfly</span>
+                <span class="tech-tag">Ouranos</span>
+                <span class="tech-tag">libasync</span>
+                <span class="tech-tag">EconomyLib</span>
+                <span class="tech-tag">libReplay</span>
+                <span class="tech-tag">Java</span>
+		<span class="tech-tag">多版本代理</span>
+                <span class="tech-tag">异步架构</span>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2023 Prokits Network. 保留所有权利。</p>
+            <p>我们是一个非营利性的Minecraft服务器开发团队。</p>
+        </footer>
+    </div>
 </body>
 </html>
