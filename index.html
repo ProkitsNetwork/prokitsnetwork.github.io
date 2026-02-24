@@ -1,630 +1,518 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Prokits Network</title>
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/terminal.css@0.7.5/dist/terminal.min.css"
-        />
-        <style>
-            :root {
-                --global-font-size: 16px;
-                --global-line-height: 1.6;
-                --font-stack:
-                    "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
-                --background-color: #0d0d0d;
-                --font-color: #f5f5f7;
-                --primary-color: #00d4ff;
-                --secondary-color: #6e6e73;
-                --tertiary-color: #86868b;
-                --code-bg-color: #1d1d1f;
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prokits Network · 七年</title>
+  <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.5/dist/terminal.min.css">
+  <style>
+    :root {
+      --global-font-size: 17px;
+      --global-line-height: 1.6;
+      --font-stack: "SF Mono", "Menlo", "Monaco", "Consolas", "JetBrains Mono", monospace;
+      --background-color: #0a0c0f;
+      --font-color: #eef3fc;
+      --primary-color: #3bc9f0;
+      --secondary-color: #9aaebf;
+      --tertiary-color: #6b7f8f;
+      --code-bg-color: #131a20;
+      --border-dim: #25333d;
+      --glow-color: rgba(59, 201, 240, 0.15);
+      --gradient-timeline: linear-gradient(180deg, #3bc9f0, #2f80ed, #6b7f8f);
+    }
 
-            body {
-                -webkit-font-smoothing: antialiased;
-            }
+    body {
+      -webkit-font-smoothing: antialiased;
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-weight: 380;
+      text-rendering: optimizeLegibility;
+    }
 
-            /* 导航 */
-            .nav {
-                margin: 3rem 0 6rem;
-            }
+    .container {
+      max-width: 1000px;
+      padding: 0 2rem;
+    }
 
-            .nav-inner {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+    .nav {
+      margin: 2.5rem 0 5rem;
+      border-bottom: 1px solid var(--border-dim);
+      padding-bottom: 1.5rem;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #fff, #aad1f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .menu a {
+      color: var(--tertiary-color);
+      margin-left: 2.5rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .menu a:hover {
+      color: var(--primary-color);
+      text-shadow: 0 0 6px var(--glow-color);
+    }
 
-            .logo {
-                font-size: 1.125rem;
-                font-weight: 600;
-                letter-spacing: -0.02em;
-            }
+    .hero {
+      max-width: 780px;
+      margin: 0 auto 9rem;
+    }
+    .hero h1 {
+      font-size: 4.2rem;
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(140deg, #fff, #b4dffe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.35rem;
+      color: var(--secondary-color);
+      line-height: 1.6;
+      border-left: 3px solid var(--primary-color);
+      padding-left: 2rem;
+    }
 
-            .menu a {
-                color: var(--secondary-color);
-                margin-left: 2rem;
-                text-decoration: none;
-                transition: color 0.2s;
-            }
+    section h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--tertiary-color);
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 60px;
+      height: 1px;
+      background: var(--primary-color);
+      opacity: 0.5;
+    }
 
-            .menu a:hover {
-                color: var(--font-color);
-            }
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--gradient-timeline);
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(59, 201, 240, 0.2);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 4.2rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2.2rem;
+      top: 0.3rem;
+      width: 12px;
+      height: 12px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(59, 201, 240, 0.2);
+      transition: box-shadow 0.2s;
+    }
+    .timeline-item:hover::before {
+      box-shadow: 0 0 0 5px rgba(59, 201, 240, 0.3);
+    }
+    .timeline-item.ended::before {
+      background: var(--tertiary-color);
+      box-shadow: 0 0 0 3px rgba(107, 127, 143, 0.15);
+    }
+    .year {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--primary-color);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+    }
+    .timeline-item.ended .year {
+      color: var(--tertiary-color);
+    }
+    .timeline-item h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .timeline-item p {
+      color: var(--secondary-color);
+      line-height: 1.7;
+      margin: 0.8rem 0;
+      max-width: 85%;
+    }
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      background: rgba(59, 201, 240, 0.05);
+      border: 1px solid rgba(59, 201, 240, 0.25);
+      color: #7ad0f0;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+      backdrop-filter: blur(2px);
+    }
+    .status.ended {
+      background: rgba(107, 127, 143, 0.05);
+      border-color: rgba(107, 127, 143, 0.3);
+      color: var(--tertiary-color);
+    }
 
-            /* Hero */
-            .hero {
-                max-width: 640px;
-                margin: 0 auto 10rem;
-            }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--code-bg-color);
+      border: 1px solid var(--border-dim);
+      padding: 2rem 1.8rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+    }
+    .card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.7), 0 0 0 1px rgba(59,201,240,0.2);
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .card code {
+      color: var(--primary-color);
+      background: rgba(59, 201, 240, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .card .status {
+      margin-top: 0.8rem;
+      background: rgba(48, 209, 88, 0.08);
+      border-color: rgba(48, 209, 88, 0.3);
+      color: #45e689;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+    .card small {
+      display: block;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-dim);
+      color: var(--tertiary-color);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
 
-            .hero h1 {
-                font-size: 3.5rem;
-                font-weight: 700;
-                letter-spacing: -0.03em;
-                line-height: 1.1;
-                margin-bottom: 1.5rem;
-            }
+    .link-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border-dim);
+      border: 1px solid var(--border-dim);
+    }
+    .link-list a {
+      display: block;
+      padding: 1.5rem 1.2rem;
+      background: var(--code-bg-color);
+      color: var(--font-color);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      border: 1px solid transparent;
+      margin: -1px 0 0 -1px;
+    }
+    .link-list a:hover {
+      background: #1c2933;
+      border-color: var(--primary-color);
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 0 0 1px var(--primary-color);
+    }
+    .link-list h3 {
+      font-size: 1.1rem;
+      font-weight: 480;
+      margin-bottom: 0.3rem;
+      color: #d9ecff;
+    }
+    .link-list span {
+      color: var(--tertiary-color);
+      font-size: 0.8rem;
+      font-family: var(--font-stack);
+    }
 
-            .hero p {
-                font-size: 1.25rem;
-                color: var(--secondary-color);
-                line-height: 1.6;
-            }
+    footer {
+      margin: 10rem 0 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-dim);
+      color: var(--tertiary-color);
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
 
-            /* Section */
-            section {
-                margin: 8rem 0;
-            }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .menu { display: none; }
+      .timeline-item p { max-width: 100%; }
+      .timeline { padding-left: 1.2rem; }
+      .timeline-item::before { left: -1.3rem; width: 10px; height: 10px; }
+      .timeline::before { left: 0px; }
+      section { margin: 5rem 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">Prokits Network</div>
+      <div class="menu">
+        <a href="#story">故事</a>
+        <a href="#servers">服务器</a>
+        <a href="#opensource">开源</a>
+      </div>
+    </div>
+  </nav>
 
-            section h2 {
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 0.15em;
-                color: var(--tertiary-color);
-                margin-bottom: 3rem;
-            }
+  <section class="hero">
+    <h1>Prokits Network</h1>
+    <p>2019 年成立的 Minecraft 基岩版开发团队。<br>七年时间，折腾出一些开源项目：Ouranos 多协议代理、libasync 异步库，还有一些已经关掉的服务器。</p>
+  </section>
 
-            /* Timeline */
-            .timeline {
-                position: relative;
-                padding-left: 2rem;
-            }
+  <section id="story">
+    <h2>故事 · 时间线</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">2019</div>
+        <h3>SOVPVP</h3>
+        <p>网易/基岩版 1.12 时代。第一个服务器，所有事情的起点。</p>
+        <p>那时候啥也不懂，就是几个玩家，某天突发奇想：要不自己开个服务器试试？然后就真开了。一边学一边折腾——怎么管理，怎么写插件，怎么让这玩意儿别一天崩八回。每次看到有陌生 ID 上线，都能高兴半天。现在回头看有点傻，但那时候是真开心。最大的愿望就是服务器能热闹起来，能有个属于自己的小Hypixel。</p>
+        <p class="status">已关闭</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">~2020</div>
+        <h3>Prokits</h3>
+        <p>第一个正经的 Practice PVP 服务器。当时真以为能做大。</p>
+        <p>每个功能都往死里打磨，每个细节翻来覆去地调，虽然技术很原始。我们天真地以为——只要东西做得够好，玩家自然会来。现在想想挺傻的。但那种一门心思扑上去的感觉，还挺怀念的。那段日子每天都在调优，每天都在改，像是在雕一个自己觉得巨牛逼的作品——虽然没几个人看，但自己觉得这就是世界上最重要的事。</p>
+        <p class="status">已关闭</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2020</div>
+        <h3>ProPixelGames</h3>
+        <p>play.prokits.space:7890</p>
+        <p>小游戏服务器。战桥、空岛战争、起床战争、掘一死战。</p>
+        <p>那时候想追 Hypixel，想做成那种几千人的大服。花了几个月，把这些模式一个一个撸出来。战桥搞了，空岛战争搞了，起床战争搞了，掘一死战也搞了。然后呢？然后发现——那不是我们该走的路。花了太多时间在模仿别人，却从来没问过自己：我们到底想做啥？一堆东西做出来了，然后发现——这根本不是自己想要的。</p>
+        <p class="status">已关闭</p>
+      </div>
 
-            .timeline::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 1px;
-                background: linear-gradient(
-                    to bottom,
-                    var(--primary-color),
-                    var(--tertiary-color)
-                );
-            }
+      <div class="timeline-item">
+        <div class="year">2020</div>
+        <h3>Mirekits</h3>
+        <p>mirekits.xyz</p>
+        <p>技术试验田，各种疯狂想法的集散地。</p>
+        <p>真的很疯。有些点子成了，大部分——都砸了。但每一次失败，都让我们离技术的本质更近一点。这个地方的意义就是——你可以放心犯错。我们也确实犯了个够。最好玩的东西，往往是从那些烂摊子里冒出来的。就像摸黑乱撞，突然——哎，这儿有个门。</p>
+        <p class="status">已关闭</p>
+      </div>
 
-            .timeline-item {
-                position: relative;
-                padding-bottom: 4rem;
-            }
+      <div class="timeline-item">
+        <div class="year">2021</div>
+        <h3>pvp_NG</h3>
+        <p>内部代号。但不止是代号——我们想做一个完整形态的服务器生态，从玩法到组件都拉满。</p>
+        <p>代码洁癖犯了。看不得一点不完美，受不了。于是推翻，重写。一遍。又一遍。技术越来越细，框架越来越成熟。花了整整五年，一千八百多个日夜。每个晚上都在想——这个能更好，那个该重来。终于磨出一个自己看得过去的框架。它很完美——在我眼里。</p>
+        <p>然后 PHP 把这东西干掉了。五年，撞到语言的墙。房子盖得挺漂亮，结果地基是沙。</p>
+        <p class="status">已弃用</p>
+      </div>
 
-            .timeline-item::before {
-                content: "";
-                position: absolute;
-                left: -2.375rem;
-                top: 0.375rem;
-                width: 0.75rem;
-                height: 0.75rem;
-                background: var(--primary-color);
-                border-radius: 50%;
-            }
+      <div class="timeline-item">
+        <div class="year">2021</div>
+        <h3>misaki</h3>
+        <p>神秘的“日你妈”服务器。名字是 2333 起的，纯属整活。</p>
+        <p>2333 是我们这的祖师爷。总之这名字确实有点——特别。灰度测了一阵，然后某天突然觉得：算了，这名儿没法上线。于是改叫 misaki。那段日子呢？服务器开了关，关了开。摸索，试错，学习。当时还不知道方向是啥，但至少——在动。有时候动起来就比干想强一万倍。</p>
+        <p class="status">已关闭</p>
+      </div>
 
-            .timeline-item.ended::before {
-                background: var(--tertiary-color);
-            }
+      <div class="timeline-item">
+        <div class="year">~2021</div>
+        <h3>PrivateMine</h3>
+        <p>第一次改核心。</p>
+        <p>第一次，对着那坨庞大又复杂的核心代码，心里想——这玩意儿我能改吗？然后就开始改了。一行一行，小心翼翼的，生怕改炸了。结果当然——炸了好多回。但每次崩溃都让你多懂一点。慢慢知道核心是咋转的了。第一次改核心，像第一次拆手表——零件散一地，但总算知道齿轮怎么咬的了。</p>
+      </div>
 
-            .year {
-                font-size: 0.75rem;
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
-            }
+      <div class="timeline-item">
+        <div class="year">~2021</div>
+        <h3>ProtocolLib</h3>
+        <p>服务器通信方案。pvp_NG 那会儿的野心产物。</p>
+        <p>那时候 pvp_NG 想搞多进程群组。一个服务器不够，要整一群。一群之间得通信，得同步，得像个整体一样跑。这想法——太超前了。PHP 根本扛不住。但 ProtocolLib 活下来了。它算是我们野心的见证。有时候会想，如果当年 PHP 再强一点，这故事会不会不一样？不会的。有的路，走岔了就是走岔了。</p>
+      </div>
 
-            .timeline-item.ended .year {
-                color: var(--tertiary-color);
-            }
+      <div class="timeline-item">
+        <div class="year">2022</div>
+        <h3>prokits_NG</h3>
+        <p>pvp_NG 的落地版。全自动部署，迭代工具拉满，子服务器都搭好了。灰度测了一小波。</p>
+        <p>可玩的原型做完了。然后？然后就没有然后了。</p>
+        <p>这是离“成”最近的一次。也是最难受的一次放弃。所有基础设施都到位了，工具都备齐了，子服务器都跑起来了——但就是没走完最后一步。有时候深夜会想，成和败之间到底差了什么？技术？运气？时机？可能就差那么一点。最磨人的不是全盘皆输，而是——差一点就成了。</p>
+        <p class="status">暂停</p>
+      </div>
 
-            .timeline-item h3 {
-                font-size: 1.25rem;
-                margin-bottom: 0.5rem;
-            }
+      <div class="timeline-item">
+        <div class="year">2022</div>
+        <h3>gractice</h3>
+        <p>前卫实验，内部代号。</p>
+        <p>在这试了很多不切实际的 idea。多不切实际？非常不切实际。大部分都黄了。但这些失败教会我的，比成了的事多得多。有时候失败才是最狠的老师——虽然学的时候挺疼。有意思的是，有些当年觉得“不切实际”的东西，几年后再看——原来只是走太早了。</p>
+        <p class="status">内部</p>
+      </div>
 
-            .timeline-item p {
-                color: var(--secondary-color);
-                line-height: 1.6;
-            }
+      <div class="timeline-item">
+        <div class="year">2022-01</div>
+        <h3>WorldsX</h3>
+        <p>多世界插件开源。我们第一个拿出来的开源项目。</p>
+        <p>从用别人的代码，到让别人用我们的代码——这是个转折。以前都是伸手从社区拿，突然有天，你开始往外掏东西了。感觉还行。开始回馈，开始分享。虽然当时也不确定有没有人会用——但总之，开始了。</p>
+      </div>
 
-            .timeline-item p:not(:last-child) {
-                margin-bottom: 0.5rem;
-            }
+      <div class="timeline-item">
+        <div class="year">2022-04</div>
+        <h3>libasync</h3>
+        <p>轻量级 PHP 异步库开源。</p>
+        <p>协程、延迟执行、陷阱、超时——PocketMine-MP 生态里缺个趁手的异步工具。被这问题恶心了很久，然后花时间把它啃了。弄完之后想——要不扔出去？说不定别人也卡在这儿呢。那种“我蹚过这坑，所以留个路标”的感觉——还挺暖的。</p>
+      </div>
 
-            .status {
-                display: inline-block;
-                padding: 0.125rem 0.5rem;
-                background: rgba(48, 209, 88, 0.15);
-                color: #30d158;
-                font-size: 0.75rem;
-                margin-top: 0.75rem;
-            }
+      <div class="timeline-item">
+        <div class="year">2022-05</div>
+        <h3>libReplay</h3>
+        <p>PMMP 玩家行为回放库开源。</p>
+        <p>录下玩家的操作，回放出来，用来调试和分析。有些事得回头看，才知道问题出在哪儿。写代码是这样，做人也是。得回头看看，才能往前走。这个库就是帮你回头的——还能慢放。</p>
+      </div>
 
-            .status.ended {
-                background: rgba(134, 134, 139, 0.15);
-                color: var(--tertiary-color);
-            }
+      <div class="timeline-item">
+        <div class="year">2022-09</div>
+        <h3>Ouranos</h3>
+        <p>多协议代理开源，能在协议层面转版本。</p>
+        <p>这是我们在服务器技术上最大的突破。让不同版本的客户端都能连上不同版本的服务端——版本墙突然就不是墙了。就像一直被堵着，有天突然找到了门。打通任督二脉的感觉——像学会了怎么呼吸。这项目后来居然有几十个 star——对我们来说，那是大事儿。</p>
+      </div>
 
-            /* Cards */
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1.5rem;
-            }
+      <div class="timeline-item">
+        <div class="year">~2022</div>
+        <h3>libwillrun</h3>
+        <p>PHP 性能优化库。撞墙之后想捞一把。</p>
+        <p>PHP 撞墙了。那种感觉就像——开着车，突然发现前面是悬崖。刹车？来不及了。于是拼命想辙，想让车飞过去。libwillrun 就是那个“让车飞”的尝试。把函数调用挪到更合适的地方，能缓存的都缓存，能优化的全优化。想救这个局。但有些事不是光靠努力就能成的。PHP 就是 PHP。</p>
+      </div>
 
-            .card {
-                background: var(--code-bg-color);
-                border: 1px solid #2a2a2e;
-                padding: 2rem;
-                transition: border-color 0.2s;
-            }
+      <div class="timeline-item">
+        <div class="year">~2022</div>
+        <h3>PowerPocketMine</h3>
+        <p>疯狂的多协议支持实验。</p>
+        <p>想支持所有协议。所有版本。疯吧？是挺疯的。代码乱成一锅粥，优化烂得没法看。但它能跑。硬塞进去那么多协议，就像把十个胖子怼进一个小电梯——挤是挤了点，但都在里头。有意思的是，这坨烂代码反而让我们对协议设计多了不少理解。有时候烂代码才是最好的老师——因为它会往死里罚你。</p>
+      </div>
 
-            .card:hover {
-                border-color: var(--tertiary-color);
-            }
+      <div class="timeline-item">
+        <div class="year">2023</div>
+        <h3>Misaki (复活)</h3>
+        <p>play.misaki.host</p>
+        <p>技术翻新，加了新玩法。</p>
+        <p>“revivo”——复活。把它带回来了，带着新的技术和新的理解。有些东西值得再来一次。Misaki 就是。有时候放弃不是终点，有时候放弃只是——暂停。暂停完可以重开，而且会比上次强，因为你清楚上次是怎么翻的车。</p>
+        <p class="status">运行中</p>
+      </div>
 
-            .card h3 {
-                font-size: 1.125rem;
-                margin-bottom: 0.5rem;
-            }
+      <div class="timeline-item">
+        <div class="year">~2023</div>
+        <h3>AdoptPocketMine-MP</h3>
+        <p>正经的核心 fork，不乱来了。</p>
+        <p>这次不一样。这次像大厂维护 Linux Kernel 那样——专业、严谨、每一步都过脑子。不再瞎搞，不再乱改。学会了怎么正经维护一个 fork，怎么追上游，怎么提 PR，怎么管 patch。算是一种成长。从野路子到稍微正规点，这条路走了好几年。</p>
+      </div>
 
-            .card code {
-                color: var(--primary-color);
-            }
+      <div class="timeline-item">
+        <div class="year">2024</div>
+        <h3>Solaria</h3>
+        <p>用 df-mc/dragonfly 重写，高性能 PVP 架构。这次选了 Go，彻底告别 PHP。</p>
+        <p>算是向 2020 年那个 Prokits 致敬。绕了一大圈——试过 Hypixel，试过各种小游戏，试过一堆疯狂的技术实验——最后发现，最初想做的东西，才是最值得追的。找回了当年的自己，找回了最初那点念想。有些东西绕一圈才明白。终于做回真正想做的事，那种感觉——像回家了。</p>
+        <p class="status">运行中</p>
+      </div>
 
-            .card p {
-                color: var(--secondary-color);
-                font-size: 0.9375rem;
-                line-height: 1.5;
-            }
+      <div class="timeline-item">
+        <div class="year">2025-11</div>
+        <h3>EconomyLib</h3>
+        <p>经济系统框架开源。原子更新、LRU 缓存、玩家身份系统。</p>
+        <p>把这几年攒的经验都塞进去了。这是时间沉淀下来的东西，无数个深夜调试和优化的结果。是终于把一个东西做对的时候——那种“啊，原来应该这样”的感觉。不是猜的，是真的理解了。每个设计背后都有原因，因为那些原因都是拿坑换来的。</p>
+      </div>
 
-            .card small {
-                display: block;
-                margin-top: 1rem;
-                padding-top: 1rem;
-                border-top: 1px solid #2a2a2e;
-                color: var(--tertiary-color);
-                font-size: 0.8125rem;
-                line-height: 1.5;
-            }
+      <div class="timeline-item ended">
+        <div class="year">2026</div>
+        <h3>现在</h3>
+        <p>Solaria 稳了，Misaki 活了，Ouranos 还在改。</p>
+        <p>七年了。有的服务器关了，有的项目停了——但有些东西留下来了。我们还在写。下一个故事？还没写完。故事最精彩的地方是什么——是它还没结束。只要还在写，故事就没完。最好的部分，可能还没来。</p>
+      </div>
+    </div>
+  </section>
 
-            /* Link List */
-            .link-list {
-                list-style: none;
-                padding: 0;
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1rem;
-            }
+  <section id="servers">
+    <h2>运行中的服务器</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Solaria</h3>
+        <p>solaria.asia:25592</p>
+        <small>基于 Dragonfly 的高性能基岩版 PVP 服务器。<br>2024 年用 Go 重写了整套服务端，终于跟 PHP 说再见了。<br>靠 Ouranos 代理支持多版本，PVP 手感调了无数遍。</small>
+      </div>
+      <div class="card">
+        <h3>Misaki</h3>
+        <p>play.misaki.host:25601</p>
+        <small>实验性服务器，底层是 pvp_NG。<br>这就是那个“revivo”——我们把它捞回来了。<br>会有新玩法、技术预览，也可能有 bug。</small>
+      </div>
+    </div>
+  </section>
 
-            .link-list a {
-                display: block;
-                padding: 1.5rem;
-                background: var(--code-bg-color);
-                border: 1px solid #2a2a2e;
-                color: var(--font-color);
-                text-decoration: none;
-                transition: border-color 0.2s;
-            }
+  <section id="opensource">
+    <h2>我们留下的</h2>
+    <div class="link-list">
+      <a href="https://github.com/Blackjack200/Ouranos"><h3>Ouranos</h3><span>多协议代理 · Java</span></a>
+      <a href="https://github.com/Blackjack200/libasync"><h3>libasync</h3><span>异步库 · PHP</span></a>
+      <a href="https://github.com/Blackjack200/libReplay"><h3>libReplay</h3><span>回放系统 · PHP</span></a>
+      <a href="https://github.com/Blackjack200/EconomyLib"><h3>EconomyLib</h3><span>经济系统 · PHP</span></a>
+      <a href="https://github.com/ProkitsNetwork/WorldsX"><h3>WorldsX</h3><span>多世界插件 · PHP</span></a>
+      <a href="https://github.com/Blackjack200/ProtocolLib"><h3>ProtocolLib</h3><span>服务器通信 · PHP</span></a>
+      <a href="https://github.com/Blackjack200/libwillrun"><h3>libwillrun</h3><span>性能优化 · PHP</span></a>
+      <a href="https://github.com/ProkitsNetwork/PrivateMine"><h3>PrivateMine</h3><span>服务器核心 · PHP</span></a>
+      <a href="https://github.com/ProkitsNetwork/AdoptPocketMine-MP"><h3>AdoptPocketMine-MP</h3><span>服务器核心 · PHP</span></a>
+      <a href="https://github.com/IdotClub/PowerPocketMine"><h3>PowerPocketMine</h3><span>多协议核心 · PHP</span></a>
+    </div>
+  </section>
 
-            .link-list a:hover {
-                border-color: var(--tertiary-color);
-            }
-
-            .link-list h3 {
-                font-size: 1rem;
-                margin-bottom: 0.25rem;
-            }
-
-            .link-list span {
-                color: var(--tertiary-color);
-                font-size: 0.8125rem;
-            }
-
-            /* Footer */
-            footer {
-                margin: 12rem 0 4rem;
-                padding-top: 2rem;
-                border-top: 1px solid #2a2a2e;
-                color: var(--tertiary-color);
-                font-size: 0.8125rem;
-            }
-
-            /* 响应式 */
-            @media (max-width: 768px) {
-                .hero h1 {
-                    font-size: 2.5rem;
-                }
-                .menu {
-                    display: none;
-                }
-                section {
-                    margin: 6rem 0;
-                }
-                .timeline::before {
-                    left: -0.5rem;
-                }
-                .timeline {
-                    padding-left: 0;
-                }
-                .timeline-item::before {
-                    display: none;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <!-- 导航 -->
-            <nav class="nav">
-                <div class="nav-inner">
-                    <div class="logo">Prokits Network</div>
-                    <div class="menu">
-                        <a href="#story">故事</a>
-                        <a href="#servers">服务器</a>
-                        <a href="#opensource">开源</a>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Hero -->
-            <section class="hero">
-                <h1>Prokits Network</h1>
-                <p>
-                    2019 年成立的 Minecraft 基岩版开发团队。<br />七年技术探索，
-                    Ouranos 多协议代理、libasync 异步库等开源项目。
-                </p>
-            </section>
-
-            <!-- 故事 -->
-            <section id="story">
-                <h2>故事</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="year">2019</div>
-                        <h3>SOVPVP</h3>
-                        <p>
-                            网易/基岩版 1.12
-                            时代。我们的第一个服务器，一切都从这里开始。
-                        </p>
-                        <p>
-                            什么都不懂。就是一群玩家，有一天突然想——要不自己开个服务器？然后就干了。从头学起——怎么管理服务器，怎么写插件，怎么让这玩意儿别崩。每次看到有人上线，那种感觉——就像过节一样。现在想想挺傻的，但是很开心。那时候最大的梦想就是服务器热闹起来——那就是我们的Hypixel了。
-                        </p>
-                        <p class="status">已关闭</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2020</div>
-                        <h3>Prokits</h3>
-                        <p>
-                            第一个正式 Practice PVP
-                            服务器。那时候我们以为可以做成大服。
-                        </p>
-                        <p>
-                            每个功能都打磨到极致，每个细节都反复调整，尽管当时技术十分原始。我们以为——只要做得足够好，玩家就会来。天真吗？现在想想，挺天真的。但那种单纯——还挺怀念的。那段日子我们每天都在优化，每天都在改进，就像在雕刻一件艺术品——虽然观众不多，但我们觉得这是世界上最棒的事情。
-                        </p>
-                        <p class="status">已关闭</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2020</div>
-                        <h3>ProPixelGames</h3>
-                        <p>play.prokits.space:7890</p>
-                        <p>
-                            小游戏服务器。战桥、空岛战争、起床战争、掘一死战。
-                        </p>
-                        <p>
-                            那时候我们想做 Hypixel。那个几千人的服务器。我们想做成那样。花了几个月时间，把这些模式一个个做出来。战桥做了，空岛战争做了，起床战争做了，掘一死战也做了。然后呢？然后我们发现——那不是我们的路。我们花了太多时间在模仿别人，却忘了问自己一个最简单的问题：我们到底想做什么？花了几个月做了一堆东西，然后发现——这不是你想要的。
-                        </p>
-                        <p class="status">已关闭</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2020</div>
-                        <h3>Mirekits</h3>
-                        <p>mirekits.xyz</p>
-                        <p>先进技术试验田。我们在这里尝试了很多疯狂的想法。</p>
-                        <p>
-                            疯狂。我是说真的疯狂。有些想法成功了，大部分——失败了。但每一次失败都让我们更接近技术的本质。这个地方存在的意义就是——允许你犯错。而我们确实犯了足够多的错。有些最有趣的发现就是从这些失败里冒出来的。就像你在黑暗里乱撞，突然——哎，这里有个门。
-                        </p>
-                        <p class="status">已关闭</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2021</div>
-                        <h3>pvp_NG</h3>
-                        <p>
-                            内部开发代号。但不只是代号——我们企图开发一个成熟形态的全链路完整服务器生态，包括充分完成度很高的玩法和各种完善的组件。
-                        </p>
-                        <p>
-                            代码洁癖。我看不到不完美的代码，我受不了。于是不断推翻重写。一遍。又一遍。技术越来越精进，框架越来越成熟。我花了整整五年，一千八百多个日夜。每个晚上都在想——这个可以更好，那个应该重写。我打磨出一个我引以为傲的框架。它是完美的——在我眼里。
-                        </p>
-                        <p>
-                            然后 PHP
-                            杀死了它。就这样。五年心血，撞上了语言的墙。盖了一座漂亮的房子，然后发现地基是沙子。
-                        </p>
-                        <p class="status">已弃用</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2021</div>
-                        <h3>misaki</h3>
-                        <p>
-                            神秘的"日你妈"服务器。这名字是 2333
-                            起的。一个玩笑名字。
-                        </p>
-                        <p>
-                            2333
-                            是服务器的祖师爷。总之这名字确实挺——特别的。我们灰度测试了一阵子，然后某天突然想——好吧，这名字可能不太适合正式上线。于是改名
-                            misaki。但那段日子？服务器开了又关，关了又开。我们在摸索，在试错，在学习。那时候还不清楚方向是什么，但至少——我们在动。有时候，动起来就是一切。比站在原地想一万遍强。
-                        </p>
-                        <p class="status">已关闭</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022</div>
-                        <h3>prokits_NG</h3>
-                        <p>
-                            pvp_NG
-                            的落地尝试。全自动部署，完整的更新迭代工具，子服务器都搭建好了。极少玩家灰度测试。
-                        </p>
-                        <p>可游玩原型完成了。然后？然后就没有然后了。</p>
-                        <p>
-                            这是最接近"成功"的一次尝试。也是最遗憾的一次放弃。所有基础设施都就绪了，所有工具都准备好了，子服务器都跑起来了——但就是没能走到最后。有时候你深夜会想，成功和失败之间差的到底是什么？技术？运气？时机？可能就是那么一点点东西吧。我们差了那么一点点。最折磨人的不是完全失败——是差点成功。
-                        </p>
-                        <p class="status">暂停</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022</div>
-                        <h3>gractice</h3>
-                        <p>前卫实验，内部开发代号。</p>
-                        <p>
-                            我们在这里尝试了很多不切实际的 idea。有多不切实际？非常不切实际。大部分失败了。但那些失败教给我的，比成功多得多。有时候失败才是最好的老师——虽然这老师挺严厉的。最有趣的是，有些当时觉得"不切实际"的想法，几年后回头看——原来我们只是走得太早了。
-                        </p>
-                        <p class="status">内部</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022-01</div>
-                        <h3>WorldsX</h3>
-                        <p>多世界插件开源。我们的第一个开源项目。</p>
-                        <p>
-                            从用别人的代码，到让别人用我们的代码——这是一个转变。以前总是从社区拿东西，突然有一天，你开始给东西了。那种感觉——还不错。我们开始回馈社区，开始分享我们的东西。虽然那时候我们也不确定有没有人会用——但总之，我们开始了。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022-04</div>
-                        <h3>libasync</h3>
-                        <p>轻量级 PHP 异步编程库开源。</p>
-                        <p>
-                            协程、延迟执行、陷阱、超时——PocketMine-MP
-                            生态里的异步解决方案。我们遇到了这个困扰很久的问题，然后花时间解决它。解决完了之后想——为什么不分享出去？可能别人也遇到同样的问题呢。那种"我走过这条路，所以把路标留下来"的感觉——还挺温暖的。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022-05</div>
-                        <h3>libReplay</h3>
-                        <p>PMMP 玩家行为回放库开源。</p>
-                        <p>
-                            记录和回放玩家会话，用于调试和分析。有时候你需要回过头来看看，才能明白问题出在哪里。代码是这样。做人也是这样。你总得回头看，才能往前走。这个工具就是让你能回头看的——以慢动作的方式。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2022-09</div>
-                        <h3>Ouranos</h3>
-                        <p>多协议代理开源，实现协议级别的多版本转换。</p>
-                        <p>
-                            这是我们在服务器技术上的最大突破。让不同版本客户端连接到不同版本服务器——突然之间，版本不再是障碍。就像你一直被一道墙挡着，然后有一天，你找到了门。我们打通了任督二脉。那种感觉——就像突然学会了怎么呼吸。这个项目后来居然有几十个 star——对我们来说，那是大事。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2023</div>
-                        <h3>Misaki</h3>
-                        <p>play.misaki.host</p>
-                        <p>技术更新，新增游戏模式。</p>
-                        <p>
-                            "revivo"——复活。我们把它带回来了，带着新的技术，新的理解。有些东西，值得第二次机会。Misaki
-                            就是。有时候放弃不是终点，有时候放弃只是一个——暂停。暂停之后，你可以重新开始。而且你会比上次更强，因为你知道上次哪里做错了。
-                        </p>
-                        <p class="status">运行中</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2024</div>
-                        <h3>Solaria</h3>
-                        <p>使用 df-mc/dragonfly 重写，高性能 PVP 架构。</p>
-                        <p>这次我们选择了 Go 而不是 PHP。技术栈彻底转向。</p>
-                        <p>
-                            这是对 2020 年 Prokits 的致敬。我们绕了一大圈——试过 Hypixel，试过各种小游戏，试过疯狂的技术实验——最后发现，最初的梦想，才是最值得追的。找回当年的自己，找回当年的初心。有些东西，绕一圈回来才明白。当你终于做回你真正想做的事情时，那种感觉——就像回家了。
-                        </p>
-                        <p class="status">运行中</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2021</div>
-                        <h3>PrivateMine</h3>
-                        <p>第一次修改服务器核心。</p>
-                        <p>
-                            第一次，当你看着那个庞大复杂的核心代码，心里想——我能改这个吗？然后你开始改。一行又一行。小心翼翼。生怕把哪里弄坏了。结果当然——弄坏了很多地方。但每一次崩溃都是一次学习。你开始理解核心是怎么工作的。第一次改核心，就像第一次拆手表——零件散了一地，但你终于知道齿轮是怎么咬合的了。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2021</div>
-                        <h3>ProtocolLib</h3>
-                        <p>服务器通信解决方案。pvp_NG 的野心产物。</p>
-                        <p>
-                            那时候 pvp_NG
-                            想做多进程服务器群组。就是一个服务器不够，要搞一群。一群服务器之间要通信。要同步。要像一个整体一样运作。这个想法——太超前了。PHP
-                            根本撑不住。但 ProtocolLib
-                            活下来了。它是我们野心的见证。有时候你会想，如果当年
-                            PHP
-                            再强一点，这个故事会不会不一样？不会的。有些路，走错了就是走错了。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2022</div>
-                        <h3>libwillrun</h3>
-                        <p>PHP 性能优化库。撞墙后的挽救尝试。</p>
-                        <p>
-                            PHP
-                            撞墙了。那种感觉就像——你开着一辆车，突然发现前面是悬崖。刹车？来不及了。于是你拼命想找办法让车飞起来。libwillrun
-                            就是那个"让车飞起来"的尝试。把函数调用移到更优的位置，缓存所有能缓存的东西，优化一切能优化的地方。你想挽救这个局面。但有些东西，不是靠努力就能改变的。PHP 就是 PHP。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2022</div>
-                        <h3>PowerPocketMine</h3>
-                        <p>疯狂的多协议支持实验。</p>
-                        <p>
-                            我们想支持所有协议。所有版本。疯狂吧？是很疯狂。代码一团糟，优化烂得要命。但它是能跑的。我们硬塞进去这么多协议，就像把十个胖子塞进一个小电梯——挤是挤了点，但大家都在里面。最有趣的是，这种混乱的代码反而教会了我们很多关于协议设计的知识。有时候，烂代码才是最好的老师——因为它会狠狠地惩罚你。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">~2023</div>
-                        <h3>AdoptPocketMine-MP</h3>
-                        <p>成熟的核心修改 fork。</p>
-                        <p>
-                            这次不一样。这次我们像大企业改 Linux Kernel
-                            那样——专业、严谨、每一步都经过深思熟虑。不再瞎折腾，不再乱改一通。我们学会了怎么正确地维护一个
-                            fork。怎么追踪上游，怎么提交 PR，怎么管理
-                            patch。这是一种成长。从野路子到正规军，这条路我们走了好几年。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="year">2025-11</div>
-                        <h3>EconomyLib</h3>
-                        <p>
-                            经济系统框架开源。原子更新、LRU 缓存、玩家身份系统。
-                        </p>
-                        <p>
-                            把这几年积累的经验都放进去了。这是时间沉淀下来的东西，是无数个夜晚调试和优化的结晶。是当你终于把一个东西做对的时候——那种"啊，原来应该这样做"的感觉。你不是在猜测，你是在理解。你知道每一个设计决策背后的原因，因为那些原因都是你用错误换来的。
-                        </p>
-                    </div>
-
-                    <div class="timeline-item ended">
-                        <div class="year">2026</div>
-                        <h3>现在</h3>
-                        <p>
-                            Solaria 稳定运行，Misaki 复活上线，Ouranos
-                            持续迭代。
-                        </p>
-                        <p>
-                            七年过去了。有些服务器关了，有些项目停了——但有些东西活下来了。我们还在继续。下一个故事？还在书写。故事最精彩的地方是什么——是它还没有结束。只要我们还在写，这个故事就还在继续。最好的部分，可能还没到来。
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 服务器 -->
-            <section id="servers">
-                <h2>运行中的服务器</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>Solaria</h3>
-                        <p><code>solaria.asia:25592</code></p>
-                        <p class="status">● 在线</p>
-                        <small
-                            >基于 Dragonfly 的高性能基岩版 PVP 服务器。<br />2024
-                            年我们用 Go 重写了整个服务端，彻底告别 PHP。<br />通过
-                            Ouranos 代理支持多版本，PVP
-                            机制经过反复打磨。</small
-                        >
-                    </div>
-                    <div class="card">
-                        <h3>Misaki</h3>
-                        <p><code>play.misaki.host:25601</code></p>
-                        <p class="status">● 在线</p>
-                        <small
-                            >实验性服务器，由 pvp_NG 驱动。<br />这是切实际的"revivo"——我们复活了它。<br />新游戏模式、技术预览、可能会有
-                            bug。</small
-                        >
-                    </div>
-                </div>
-            </section>
-
-            <!-- 开源 -->
-            <section id="opensource">
-                <h2>我们留下的</h2>
-                <div class="link-list">
-                    <a href="https://github.com/Blackjack200/Ouranos">
-                        <h3>Ouranos</h3>
-                        <span>多协议代理 · Java</span>
-                    </a>
-                    <a href="https://github.com/Blackjack200/libasync">
-                        <h3>libasync</h3>
-                        <span>异步库 · PHP</span>
-                    </a>
-                    <a href="https://github.com/Blackjack200/libReplay">
-                        <h3>libReplay</h3>
-                        <span>回放系统 · PHP</span>
-                    </a>
-                    <a href="https://github.com/Blackjack200/EconomyLib">
-                        <h3>EconomyLib</h3>
-                        <span>经济系统 · PHP</span>
-                    </a>
-                    <a href="https://github.com/ProkitsNetwork/WorldsX">
-                        <h3>WorldsX</h3>
-                        <span>多世界插件 · PHP</span>
-                    </a>
-                    <a href="https://github.com/Blackjack200/ProtocolLib">
-                        <h3>ProtocolLib</h3>
-                        <span>服务器通信 · PHP</span>
-                    </a>
-                    <a href="https://github.com/Blackjack200/libwillrun">
-                        <h3>libwillrun</h3>
-                        <span>性能优化 · PHP</span>
-                    </a>
-                    <a href="https://github.com/ProkitsNetwork/PrivateMine">
-                        <h3>PrivateMine</h3>
-                        <span>服务器核心 · PHP</span>
-                    </a>
-                    <a
-                        href="https://github.com/ProkitsNetwork/AdoptPocketMine-MP"
-                    >
-                        <h3>AdoptPocketMine-MP</h3>
-                        <span>服务器核心 · PHP</span>
-                    </a>
-                    <a href="https://github.com/IdotClub/PowerPocketMine">
-                        <h3>PowerPocketMine</h3>
-                        <span>多协议核心 · PHP</span>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer>
-                <p>© 2026 Prokits Network</p>
-            </footer>
-        </div>
-    </body>
+  <footer>
+    <p>© 2026 Prokits Network</p>
+  </footer>
+</div>
+</body>
 </html>
